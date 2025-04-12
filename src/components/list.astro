@@ -1,5 +1,6 @@
 ---
 import { db } from '../db';
+import moment from 'moment'
 
 const query = 'SELECT produktid,produktname,kaufdatum,ablaufdatum FROM products'
 
@@ -21,8 +22,8 @@ interface productsInfo {
             <div class="card">
                 <ul>
                     <li>Produktname: {item.produktname}</li>
-                    <li>Ablaufdatum: {item.ablaufdatum}</li>
-                    <li>Kaufdatum: {item.kaufdatum} </li>
+                    <li>Ablaufdatum: {moment(item.ablaufdatum).format('DD.MMM.YYYY')}</li>
+                    <li>Kaufdatum: {moment(item.kaufdatum).format('DD.MMM.YYYY')} </li>
                 </ul>
             </div>
         )
@@ -34,6 +35,8 @@ interface productsInfo {
 <style>
     ul {
         list-style: none;
+        margin-right: 3vw;
+       
     }
 
     .card {
@@ -41,6 +44,8 @@ interface productsInfo {
         width: 20dvw;
         border-radius: 20px;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        text-align: center;
+        align-content: center;
     }
 
     .list-element {
