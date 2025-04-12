@@ -1,0 +1,52 @@
+---
+import { db } from '../db';
+
+const query = 'SELECT produktid,produktname,kaufdatum,ablaufdatum FROM products'
+
+const response = await db.query(query);
+const products = response["rows"]
+
+
+interface productsInfo {
+    produktid: number
+    produktname: string
+    kaufdatum: Date
+    ablaufdatum: Date
+}
+---
+
+<div class="list-element">
+    {
+        products.map((item:productsInfo) => (
+            <div class="card">
+                <ul>
+                    <li>Produktname: {item.produktname}</li>
+                    <li>Ablaufdatum: {item.ablaufdatum}</li>
+                    <li>Kaufdatum: {item.kaufdatum} </li>
+                </ul>
+            </div>
+        )
+        )
+    }
+</div>
+
+
+<style>
+    ul {
+        list-style: none;
+    }
+
+    .card {
+        height: 20dvh;
+        width: 20dvw;
+        border-radius: 20px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    .list-element {
+        display: flex;
+        gap: 2vw;
+        margin-left: 2vw;
+        margin-top: 10vh;
+    }
+</style>
